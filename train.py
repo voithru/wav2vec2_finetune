@@ -34,21 +34,7 @@ def speech_file_to_array_fn(batch):
     batch["target_text"] = batch["transcript"]
     return batch
 
-def train():
-    warnings.filterwarnings("ignore", category=np.VisibleDeprecationWarning)
-    warnings.filterwarnings("ignore", category=UserWarning)
-
-    with open("config_train.yml") as f:
-        args = yaml.load(f, Loader=yaml.FullLoader)
-
-    all_dataset = load_dataset(
-        "json",
-        data_files={"train": args["train_data_path"], "test": args["test_data_path"]},
-    )
-
-    dataset_train = all_dataset["train"]
-    dataset_test = all_dataset["test"]
-
+def make_vocab(dataset_train, dataset_test):
     vocab_train = dataset_train.map(
         extract_all_chars,
         batched=True,
@@ -73,8 +59,24 @@ def train():
     with open("vocab.json", "w") as vocab_file:
         json.dump(vocab_dict, vocab_file)
 
+def train():
+    warnings.filterwarnings("ignore", category=np.VisibleDeprecationWarning)
+    warnings.filterwarnings("ignore", category=UserWarning)
 
-    print("------make_vocab_done------")
+    with open("config_train.yml") as f:
+        args = yaml.load(f, Loader=yaml.FullLoader)
+
+    all_dataset = load_dataset(
+        "json",
+        data_files={"train": args["train_data_path"], "test": args["test_data_path"]},
+    )
+
+    dataset_train = all_dataset["train"]
+    dataset_test = all_dataset["test"]
+
+    if args['make_vocab'] == True:
+        make_vocab(dataset_train, dataset_test)
+        print("------make_vocab_done------")
 
     dataset_train = dataset_train.map(
         speech_file_to_array_fn, remove_columns=dataset_train.column_names
