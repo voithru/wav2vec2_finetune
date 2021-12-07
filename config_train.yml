@@ -1,0 +1,27 @@
+train_data_path : 'path/of/your/train/data.json'
+test_data_path : 'path/of/your/test/data.json'
+checkpoint_dir : './wav2vec2-test'
+vocab_path : 'path/of/your/vocab.json'
+
+attention_dropout : 0.1
+hidden_dropout : 0.1
+feat_proj_dropout : 0.0
+mask_time_prob : 0.05
+layerdrop : 0.1
+gradient_checkpointing : True
+ctc_loss_reduction : "mean"
+
+group_by_length : True
+batch_size : 2
+gradient_accumulation_steps : 2
+evaluation_strategy : "no"
+num_train_epochs : 100
+fp16 : True
+save_steps : 4000
+eval_steps : 4000
+logging_steps : 4000
+weight_decay : 0.005
+learning_rate : 0.0003
+warmup_steps : 4000
+save_total_limit : 5
+dataloader_num_workers : 48
