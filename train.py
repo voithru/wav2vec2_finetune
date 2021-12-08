@@ -125,7 +125,7 @@ def train():
     data_collator = DataCollatorCTCWithPadding(processor=processor, padding=True)
 
     model = Wav2Vec2ForCTC.from_pretrained(
-        "facebook/wav2vec2-large-xlsr-53",
+        args["pretrained_model_path"],
         attention_dropout=args["attention_dropout"],
         hidden_dropout=args["hidden_dropout"],
         feat_proj_dropout=args["feat_proj_dropout"],

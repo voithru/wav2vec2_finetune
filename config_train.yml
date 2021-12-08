@@ -1,3 +1,4 @@
+pretrained_model_path : "facebook/wav2vec2-large-xlsr-53"
 train_data_path : 'path/of/your/train/data.json'
 test_data_path : 'path/of/your/test/data.json'
 checkpoint_dir : './wav2vec2-test'
