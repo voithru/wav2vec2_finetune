@@ -1,14 +1,16 @@
+import os
 import re
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Dict, List, Optional, Union
-import os
+
+import librosa
 import numpy as np
+import soundfile
 import torch
 from datasets import load_metric
 from transformers import Wav2Vec2Processor
-import soundfile
-import librosa
-from pathlib import Path
+
 
 def remove_special_characters(batch):
     chars_to_ignore_regex = '[\,\?\.\!\-\;\:"\“\%\‘\”\�]'
@@ -17,18 +19,18 @@ def remove_special_characters(batch):
     )
     return batch
 
+
 def extract_all_chars(batch):
     all_text = " ".join(batch["transcript"])
     vocab = list(set(all_text))
     return {"vocab": [vocab], "all_text": [all_text]}
 
+
 def get_audio_from_path(file_path):
     standard_sample_rate = 16000
     if file_path.suffix == ".pcm":
         with file_path.open("rb") as audio_file:
-            audio = (
-                    np.fromfile(audio_file, dtype=np.int16).astype(np.single) / 32768
-            )
+            audio = np.fromfile(audio_file, dtype=np.int16).astype(np.single) / 32768
     else:
         audio, sample_rate = soundfile.read(file_path, dtype=np.single, always_2d=True)
         audio = audio.mean(axis=1)
@@ -38,6 +40,7 @@ def get_audio_from_path(file_path):
             )
 
     return audio
+
 
 def speech_file_to_array_fn(batch):
     audio = get_audio_from_path(Path(batch["audio_path"]))
@@ -64,6 +67,7 @@ def makedirs(path):
     except OSError:
         if not os.path.isdir(path):
             raise
+
 
 @dataclass
 class DataCollatorCTCWithPadding:

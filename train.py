@@ -1,9 +1,12 @@
 import warnings
+
 import numpy as np
 import yaml
 from transformers import Trainer, TrainingArguments, Wav2Vec2ForCTC
+
 from dataset import dataset
 from utils import DataCollatorCTCWithPadding, compute_metrics
+
 
 def train():
     warnings.filterwarnings("ignore", category=np.VisibleDeprecationWarning)
@@ -22,7 +25,7 @@ def train():
         feat_proj_dropout=args["feat_proj_dropout"],
         mask_time_prob=args["mask_time_prob"],
         layerdrop=args["layerdrop"],
-        #gradient_checkpointing=args["gradient_checkpointing"],
+        # gradient_checkpointing=args["gradient_checkpointing"],
         ctc_loss_reduction=args["ctc_loss_reduction"],
         pad_token_id=processor.tokenizer.pad_token_id,
         vocab_size=len(processor.tokenizer),

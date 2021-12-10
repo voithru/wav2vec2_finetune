@@ -1,7 +1,11 @@
 import json
+
 from datasets import load_dataset
-from transformers import Wav2Vec2CTCTokenizer, Wav2Vec2FeatureExtractor, Wav2Vec2Processor
+from transformers import (Wav2Vec2CTCTokenizer, Wav2Vec2FeatureExtractor,
+                          Wav2Vec2Processor)
+
 from utils import extract_all_chars, speech_file_to_array_fn
+
 
 def make_vocab(dataset_train, dataset_test):
     vocab_train = dataset_train.map(
@@ -38,7 +42,7 @@ def dataset(args):
     dataset_train = all_dataset["train"]
     dataset_test = all_dataset["test"]
 
-    if args['make_vocab'] == True:
+    if args["make_vocab"] == True:
         make_vocab(dataset_train, dataset_test)
         print("------make_vocab_done------")
 
