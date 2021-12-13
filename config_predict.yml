@@ -1,0 +1,5 @@
+checkpoint_dir : '/home/sungsoo/wav2vec2_finetune/wav2vec2_AIGC2021_for_text'
+checkpoint_path : '/home/sungsoo/wav2vec2_finetune/wav2vec2_AIGC2021_for_text/checkpoint-700'
+vocab_path : '/home/sungsoo/wav2vec2_finetune/vocab.json'
+input_dir : '/home/sungsoo/wave_val'
+output_dir : '/home/sungsoo/wave_2020_result'
