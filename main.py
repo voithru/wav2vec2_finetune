@@ -1,7 +1,7 @@
 import typer
 
-from train import train
 from predict import app as predict_app
+from train import train
 
 app = typer.Typer()
 app.command(name="train")(train)
