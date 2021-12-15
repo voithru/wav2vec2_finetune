@@ -29,12 +29,12 @@ python main.py v1 train
 
 ## Inference
 
-###Inference for one checkpoint
+### Inference for one checkpoint
 ```commandline
 python main.py v1 predict one
 ```
 
-###Inference for many checkpoint
+### Inference for many checkpoint
 ```commandline
 python main.py v1 predict many
 ```
