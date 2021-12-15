@@ -4,6 +4,10 @@ Wav2Vec2 finetune and inference code for IITP AI Grand Challenge
 - 이 코드는 IITP 주관 인공지능그랜드챌린지 4차대회 트랙2에 사용한 코드를 공개한 것입니다.
 - 이 코드는 huggingface에서 제공하는 Wav2Vec2 Finetuning에 대한 [sample code](https://colab.research.google.com/github/patrickvonplaten/notebooks/blob/master/Fine_tuning_Wav2Vec2_for_English_ASR.ipynb) 를 참고하여 작성하였습니다.
 
+## Installation
+```commandline
+pip install -r requirements.txt
+```
 
 ## Finetune
 
