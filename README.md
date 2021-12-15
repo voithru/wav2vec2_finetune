@@ -19,7 +19,7 @@ Wav2Vec2 finetune and inference code for IITP AI Grand Challenge
 
 ### Finetuning
 ```commandline
-python main.py v1 train
+python main.py train
 ```
 - `config_train.yml`에서 `arguments`를 변경하실 수 있습니다.
 - `pretrained_model_path`에 `huggingface`에 등록된 wav2vec2 pretrained model을 입력하여 사용할 수 있습니다.
@@ -31,14 +31,14 @@ python main.py v1 train
 
 ### Inference for one checkpoint
 ```commandline
-python main.py v1 predict one
+python main.py predict one
 ```
 
 - `config_predict.yml`에서 `arguments`를 변경하실 수 있습니다.
 
 ### Inference for many checkpoint
 ```commandline
-python main.py v1 predict many
+python main.py predict many
 ```
 
 - `config_predict.yml`에서 `arguments`를 변경하실 수 있습니다.
