@@ -34,9 +34,12 @@ python main.py v1 train
 python main.py v1 predict one
 ```
 
+- `config_predict.yml`에서 `arguments`를 변경하실 수 있습니다.
+
 ### Inference for many checkpoint
 ```commandline
 python main.py v1 predict many
 ```
 
 - `config_predict.yml`에서 `arguments`를 변경하실 수 있습니다.
+- `checkpoint_dir`은 각 `checkpoint` 폴더가 모두 포함된 directory 경로가 들어가야 합니다.
