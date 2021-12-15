@@ -24,7 +24,14 @@ def predict_one():
         pad_token="[PAD]",
         word_delimiter_token="|",
     )
-    model = Wav2Vec2ForCTC.from_pretrained(args["checkpoint_path"])
+    if args["device"] == 'gpu':
+        device = torch.device('cuda')
+    elif args["device"] == 'cpu':
+        device = torch.device('cpu')
+    else:
+        assert NotImplementedError('Not implemented device')
+
+    model = Wav2Vec2ForCTC.from_pretrained(args["checkpoint_path"]).to(device)
     feature_extractor = Wav2Vec2FeatureExtractor(
         feature_size=1,
         sampling_rate=16000,
@@ -82,9 +89,16 @@ def predict_all():
         audios.append((file_path.stem, audio))
 
     makedirs(args["output_dir"])
+
+    if args["device"] == 'gpu':
+        device = torch.device('cuda')
+    elif args["device"] == 'cpu':
+        device = torch.device('cpu')
+    else:
+        assert NotImplementedError('Not implemented device')
+
     for checkpoint in tqdm(checkpoints):
-        print(checkpoint.stem)
-        model = Wav2Vec2ForCTC.from_pretrained(checkpoint)
+        model = Wav2Vec2ForCTC.from_pretrained(checkpoint).to(device)
         feature_extractor = Wav2Vec2FeatureExtractor(
             feature_size=1,
             sampling_rate=16000,
