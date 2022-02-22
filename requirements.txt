@@ -2,5 +2,5 @@ torch==1.7.1
 typer
 datasets==1.13.3
 transformers==4.11.3
-librosa
+librosa==0.9.1
 jiwer
